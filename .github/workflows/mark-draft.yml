@@ -24,4 +24,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
           TITLE: ${{ github.event.pull_request.title }}
-          MESSAGE: "Thanks for the PR! :heart:\nI'm marking it as a draft, once your happy with it merging and the PR is passing CI click the \"Ready for review\" button below."
+          MESSAGE: "Thanks for the PR! :heart:\nI'm marking it as a draft, once your happy with it merging and the PR is passing CI, click the \"Ready for review\" button below."
