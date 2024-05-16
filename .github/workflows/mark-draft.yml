@@ -16,7 +16,7 @@ jobs:
         if: github.event.pull_request.draft == false
         shell: bash
         run: >
-          if [[ "$TITLE" =~ ^nit:.* ]]; then
+          if ! [[ "$TITLE" =~ ^nit:.* ]]; then
             gh pr ready "$URL" --undo && 
             printf 'Thanks for the PR! :heart:\nI am marking it as a draft,
             once passing your happy and the PR is passing CI click the
