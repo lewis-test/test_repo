@@ -15,15 +15,13 @@ jobs:
       - name: Set to draft and add comment
         if: github.event.pull_request.draft == false
         shell: bash
-        run: >
+        run: |
           if ! [[ "$TITLE" =~ ^nit:.* ]]; then
-            gh pr ready "$URL" --undo && 
-            printf 'Thanks for the PR! :heart:\nI am marking it as a draft,
-            once passing your happy and the PR is passing CI click the
-            \"Ready for review\" button below.' |
-            gh pr comment "$URL" -F - ;
+            gh pr ready "$URL" --undo
+            printf "$MESSAGE" | gh pr comment "$URL" -F -
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
           TITLE: ${{ github.event.pull_request.title }}
+          MESSAGE: "Thanks for the PR! :heart:\nI'm marking it as a draft, once your happy with it merging and the PR is passing CI click the \"Ready for review\" button below."
